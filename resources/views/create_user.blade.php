@@ -22,16 +22,20 @@
                 <input type="text" name="nama" id="nama" class="w-full p-3 bg-blue-50 text-gray-800 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama Anda">
             </div>
 
-            <!-- Input Kelas -->
-            <div class="mb-6">
-                <label for="kelas" class="block text-blue-600 text-sm font-semibold mb-2">Kelas:</label>
-                <input type="text" name="kelas" id="kelas" class="w-full p-3 bg-blue-50 text-gray-800 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan kelas Anda">
-            </div>
-
             <!-- Input NPM -->
             <div class="mb-6">
                 <label for="npm" class="block text-blue-600 text-sm font-semibold mb-2">NPM:</label>
                 <input type="text" name="npm" id="npm" class="w-full p-3 bg-blue-50 text-gray-800 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan NPM Anda">
+            </div>
+
+            <!-- Input Kelas -->
+            <div class="mb-6">
+                <label for="kelas_id" class="block text-blue-600 text-sm font-semibold mb-2">Kelas:</label>
+                <select name="kelas_id" id="kelas_id" class="w-full p-3 bg-blue-50 text-gray-800 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    @foreach ($kelas as $kelasItem)
+                        <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <!-- Tombol Submit -->

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Mahasiswa</title>
+    <title>Profil User</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -22,17 +22,17 @@
 
         <div class="mb-6">
             <label class="block text-blue-600 text-sm font-semibold mb-2">Nama:</label>
-            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $nama ? $nama : 'Belum diisi' }}</p>
-        </div>
-
-        <div class="mb-6">
-            <label class="block text-blue-600 text-sm font-semibold mb-2">Kelas:</label>
-            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $kelas ? $kelas : 'Belum diisi' }}</p>
+            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $nama }}</p>
         </div>
 
         <div class="mb-6">
             <label class="block text-blue-600 text-sm font-semibold mb-2">NPM:</label>
-            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $npm ? $npm : 'Belum diisi' }}</p>
+            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $npm }}</p>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-blue-600 text-sm font-semibold mb-2">Kelas:</label>
+            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
         </div>
     </div>
 
