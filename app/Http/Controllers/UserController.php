@@ -28,20 +28,27 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+     
         $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'npm' => 'required|string|max:255',
+            'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:255',
+            'npm' => 'required|digits:10',
             'kelas_id' => 'required|exists:kelas,id',
+        ], [
+            'nama.regex' => 'Nama hanya boleh mengandung huruf.',
+            'npm.digits' => 'NPM harus 10 digit angka.',
+            'kelas_id.required' => 'Kelas harus dipilih.',
         ]);
-
+    
+       
         $user = UserModel::create($validatedData);
-
+    
+     
         $user->load('kelas');
-
-        return view('profile', [
+    
+        return redirect()->route('user.profile', [
             'nama' => $user->nama,
             'npm' => $user->npm,
-            'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan',
+            'kelas' => $user->kelas->nama_kelas ?? 'kelas tidak ditemukan',
         ]);
     }
 }
