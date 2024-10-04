@@ -6,9 +6,28 @@ use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\UserModel;
 
-
 class UserController extends Controller
 {
+    protected $userModel;
+    protected $kelasModel;
+
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+        $this->kelasModel = new Kelas();
+    }
+
+    public function index()
+    {
+        $users = $this->userModel->getUser();
+        $data = [
+            'title' => 'List User',
+            'users' => $users,
+        ];
+
+        return view('list_user', $data);
+    }
+
     public function profile($nama = '', $kelas = '', $npm = '')
     {
         $data = [
@@ -20,15 +39,21 @@ class UserController extends Controller
         return view('profile', $data);
     }
 
-    public function create() {
-        return view('create_user', [
-            'kelas'=>Kelas::all(),
-        ]);
+    public function create()
+    {
+        $kelas = $this->kelasModel->getKelas();
+
+        $data = [
+            'title' => 'Create User',
+            'kelas' => $kelas,
+        ];
+
+        return view('create_user', $data);
     }
 
     public function store(Request $request)
     {
-     
+        // Validasi input
         $validatedData = $request->validate([
             'nama' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:255',
             'npm' => 'required|digits:10',
@@ -38,17 +63,14 @@ class UserController extends Controller
             'npm.digits' => 'NPM harus 10 digit angka.',
             'kelas_id.required' => 'Kelas harus dipilih.',
         ]);
-    
-       
-        $user = UserModel::create($validatedData);
-    
-     
+
+        // Menggunakan instance yang benar (huruf kecil)
+        $user = $this->userModel->create($validatedData);
+
+        // Memuat relasi kelas dari model user
         $user->load('kelas');
-    
-        return redirect()->route('user.profile', [
-            'nama' => $user->nama,
-            'npm' => $user->npm,
-            'kelas' => $user->kelas->nama_kelas ?? 'kelas tidak ditemukan',
-        ]);
+
+        // Redirect ke halaman user
+        return redirect()->to('/user');
     }
 }
