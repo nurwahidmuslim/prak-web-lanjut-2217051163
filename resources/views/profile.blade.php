@@ -1,40 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil User</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background-image: radial-gradient(circle, #2563eb, #1e3a8a);
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex items-center justify-center">
+@extends('layouts.app')
 
-    <div class="bg-white bg-opacity-95 p-10 rounded-lg shadow-lg w-full max-w-lg transform hover:scale-105 transition duration-500 ease-in-out">
-        <h1 class="text-3xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700">
-            Profil Mahasiswa
-        </h1>
+@section('content')
+<div class="container mt-5 d-flex justify-content-center"> <!-- Center the card -->
+    <div class="card shadow-lg border-0 rounded-3" style="transition: 0.3s; overflow: hidden; background-color: rgba(0, 77, 152, 0.8); max-width: 500px; width: 100%;"> <!-- Reduced width -->
+        <div class="card-body text-center">
+            <!-- Display User Photo -->
+            <div class="mb-4">
+                <img src="{{ asset($user->foto ?? 'assets/img/default.png') }}" alt="Foto Profil" class="img-fluid rounded-circle shadow" style="width: 150px; height: 150px; transition: transform 0.3s;">
+            </div>
 
-        <div class="mb-6">
-            <label class="block text-blue-600 text-sm font-semibold mb-2">Nama:</label>
-            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $nama }}</p>
-        </div>
-
-        <div class="mb-6">
-            <label class="block text-blue-600 text-sm font-semibold mb-2">NPM:</label>
-            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $npm }}</p>
-        </div>
-
-        <div class="mb-6">
-            <label class="block text-blue-600 text-sm font-semibold mb-2">Kelas:</label>
-            <p class="text-lg text-gray-800 bg-blue-50 p-3 rounded-lg shadow-md">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p>
+            <h3 class="font-weight-bold" style="color: #FFD700;">{{ $user->nama }}</h3>
+            <p class="text-light mb-1">NPM: <strong>{{ $user->npm }}</strong></p>
+            <p class="text-light mb-1">Kelas: <strong>{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</strong></p>
         </div>
     </div>
+</div>
 
-</body>
-</html>
+<style>
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    img:hover {
+        transform: scale(1.05);
+    }
+    h1, h3 {
+        letter-spacing: 1px;
+    }
+
+    h1 {
+        color: #004D98; 
+    }
+    h3 {
+        color: #FFD700;
+    }
+    strong {
+        color: #FFD700;
+    }
+
+    .card {
+        background-color: rgba(0, 77, 152, 0.8);
+    }
+    .text-light {
+        color: rgba(255, 255, 255, 0.9);
+    }
+</style>
+@endsection
