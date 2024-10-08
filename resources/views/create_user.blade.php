@@ -3,6 +3,30 @@
 @section('content')
 <div class="min-vh-100 d-flex justify-content-center align-items-center">
     <div class="card p-4 shadow-lg w-100" style="max-width: 500px; background-color: rgba(13, 49, 111, 0.8); border-radius: 10px; border: 2px solid #82000f;">
+        <style>
+            input::placeholder {
+                color: #d9d9d9 !important;
+            }
+
+            /* Style untuk tombol */
+            .btn {
+                font-weight: bold;
+                width: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            /* Tombol khusus */
+            .btn-warning {
+                color: #0d316f !important;
+            }
+
+            .btn-secondary {
+                color: #fff;
+                background-color: #82000f;
+                border: none;
+            }
+        </style>
         <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
@@ -40,14 +64,16 @@
                 @enderror
             </div>
 
+            <!-- Input Foto -->
             <div class="mb-3">
                 <label for="foto" class="form-label text-light">Foto:</label><br>
                 <input type="file" id="foto" name="foto" style="border: 2px solid #ffcc00; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
             </div>
 
-            <!-- Tombol Submit -->
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-warning">Simpan Data</button>
+            <!-- Tombol List User dan Tambah Data -->
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('user.index') }}" class="btn btn-secondary">List User</a>
+                <button type="submit" class="btn btn-warning">Tambah Data</button>
             </div>
         </form>
     </div>

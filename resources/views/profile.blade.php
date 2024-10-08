@@ -10,8 +10,12 @@
             </div>
 
             <h3 class="font-weight-bold" style="color: #FFD700;">{{ $user->nama }}</h3>
-            <p class="text-light mb-1">NPM: <strong>{{ $user->npm }}</strong></p>
-            <p class="text-light mb-1">Kelas: <strong>{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</strong></p>
+            <p class="text-light mb-1"><strong>{{ $user->npm }}</strong></p>
+            <p class="text-light mb-1"><strong>{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</strong></p>
+
+            <div class="mt-4">
+                <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>
+            </div>
         </div>
     </div>
 </div>
@@ -43,6 +47,11 @@
     }
     .text-light {
         color: rgba(255, 255, 255, 0.9);
+    }
+    .btn-secondary {
+        color: #fff;
+        background-color: #82000f;
+        border: none;
     }
 </style>
 @endsection

@@ -75,11 +75,11 @@ class UserController extends Controller
             // Membuat nama file acak dengan extension asli
             $randomName = uniqid() . '.' . $foto->getClientOriginalExtension();
             
-            // Menyimpan file di folder 'public/uploads/img'
-            $foto->move(public_path('uploads/img'), $randomName);
+            // Menyimpan file di folder 'storage/app/public/uploads/img'
+            $path = $foto->storeAs('public/uploads/img', $randomName);
             
-            // Menyimpan path foto ke database
-            $validatedData['foto'] = 'uploads/img/' . $randomName;
+            // Menyimpan path foto ke database tanpa 'public/'
+            $validatedData['foto'] = str_replace('public/', 'storage/', $path);
         } else {
             // Jika tidak ada file yang di-upload, gunakan path default
             $validatedData['foto'] = 'assets/img/default.png';
