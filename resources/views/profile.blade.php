@@ -12,6 +12,8 @@
             <h3 class="font-weight-bold" style="color: #FFD700;">{{ $user->nama }}</h3>
             <p class="text-light mb-1"><strong>{{ $user->npm }}</strong></p>
             <p class="text-light mb-1"><strong>{{ $user->nama_kelas ?? 'Kelas tidak ditemukan' }}</strong></p>
+            <p class="text-light mb-1"><strong>{{ $user->jurusan }}</strong></p>
+            <p class="text-light mb-1"><strong>{{ $user->semester }}</strong></p>
 
             <div class="mt-4">
                 <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>

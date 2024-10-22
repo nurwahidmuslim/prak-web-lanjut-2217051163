@@ -62,10 +62,14 @@ class UserController extends Controller
             'npm' => 'required|digits:10',
             'kelas_id' => 'required|exists:kelas,id',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'jurusan' => 'required|string|regex:/^[a-zA-Z\s]+$/|max:255',
+            'semester' => 'required|digits:1',
         ], [
             'nama.regex' => 'Nama hanya boleh mengandung huruf.',
             'npm.digits' => 'NPM harus 10 digit angka.',
             'kelas_id.required' => 'Kelas harus dipilih.',
+            'jurusan.regex' => 'Jurusan hanya boleh mengandung huruf.',
+            'semester.digits' => 'semester harus 1 digit angka.',
         ]);
 
         // Meng-handle upload foto
